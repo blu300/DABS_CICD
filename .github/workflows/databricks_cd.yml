@@ -28,8 +28,13 @@ jobs:
         with:
           name: DatabricksBuild
           github-token: ${{ secrets.GH_PAT }}
-          run-id: ${{ github.event.workflow_run.id }}"
+          run-id: ${{ github.event.workflow_run.id }}
           path: ${{ github.workspace }}
+      
+      - name: Unzip the Artifact
+        run: |
+          echo "Unzipping the artifact... "
+          unzip ${{ github.workspace }}/databricks_build.zip -d ${{ github.workspace }}/databricks_build/
 
       - name: Install Databricks CLI
         run: |
