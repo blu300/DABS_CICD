@@ -1,0 +1,32 @@
+# job for asset_bundles_template_test_1.
+resources:
+  jobs:
+    source_A_etl:
+      name: source_A_etl
+
+      tasks:
+        - task_key: upload_to_bronze
+          notebook_task:
+            notebook_path: ../src/source_A_1_raw_to_bronze_notebook.py
+          job_cluster_key: job_cluster
+
+        - task_key: bronze_to_silver
+          notebook_task:
+            notebook_path: ../src/source_A_2_bronze_to_silver_notebook.py
+          depends_on:
+            - task_key: upload_to_bronze
+          job_cluster_key: job_cluster
+
+        - task_key: silver_to_gold
+          notebook_task:
+            notebook_path: ../src/source_A_3_silver_to_gold_notebook.py
+          depends_on:
+            - task_key: bronze_to_silver
+          job_cluster_key: job_cluster
+
+      job_clusters:
+        - job_cluster_key: job_cluster
+          new_cluster:
+            spark_version: 13.3.x-scala2.12
+            node_type_id: Standard_D3_v2
+            num_workers: 1
