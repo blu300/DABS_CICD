@@ -49,6 +49,10 @@ jobs:
             ls -la
             echo "Changing working directory"
             cd databricks_build
+            echo "New current working directory:"
+            pwd
+            echo "Files in the current directory:"
+            ls -la
 
       - name: Deploy Databricks Asset Bundle
         run: |
