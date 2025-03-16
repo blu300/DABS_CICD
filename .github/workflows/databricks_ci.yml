@@ -10,7 +10,9 @@ jobs:
     runs-on: ubuntu-22.04
 
     env:
-      DATABRICKS_BUNDLE_ROOT: ${{ github.workspace }}/$DAB_PATH
+      DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
+      DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
+      DATABRICKS_BUNDLE_ROOT: ${{ github.workspace }}/${{ secrets.DAB_PATH }}
 
     steps:
       - name: Checkout repository
