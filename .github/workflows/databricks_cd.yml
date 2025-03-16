@@ -1,0 +1,44 @@
+name: Databricks CD Pipeline
+
+on:
+  workflow_run:
+    workflows: ["Databricks CI/CD"]  # This is the name of your CI pipeline.
+    types:
+      - completed
+
+jobs:
+  deploy:
+    runs-on: ubuntu-22.04
+
+    env:
+      DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
+      DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
+      DATABRICKS_BUNDLE_PATH: ${{ github.workspace }}/databricks_build.zip  # The path to the zip artifact
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download Databricks Build Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: DatabricksBuild
+          path: ${{ github.workspace }}
+
+      - name: Install Databricks CLI
+        run: |
+          curl -fsSL https://raw.githubusercontent.com/databricks/setup-cli/main/install.sh | sh
+
+      - name: Deploy Databricks Asset Bundle
+        run: |
+          echo "Deploying DAB bundle..."
+          databricks bundle deploy -t prod --artifact-file $DATABRICKS_BUNDLE_PATH
+
+      - name: Run Databricks Asset Bundle
+        run: |
+          echo "Running the DAB bundle..."
+          databricks bundle run source_A_etl
+
+      - name: Confirm Deployment
+        run: |
+          echo "DAB bundle deployed and job executed successfully!"
