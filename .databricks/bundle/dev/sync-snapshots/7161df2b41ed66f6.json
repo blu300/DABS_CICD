@@ -3,10 +3,13 @@
   "host": "https://adb-1909067673949101.1.azuredatabricks.net",
   "remote_path": "/Users/bbluestone@outlook.com/.bundle/source-A-bundle/dev/files",
   "last_modified_times": {
+    ".github/workflows/databricks_ci.yml": "2025-03-16T10:30:07.1341429Z",
     "README.md": "2025-03-16T09:42:56.2173828Z",
     "databricks.yml": "2025-03-16T09:50:16.7447444Z",
     "resources/integration_test_source_A_end_to_end_job.yml": "2025-03-16T09:50:51.393968Z",
     "resources/source_A_end_to_end_job.yml": "2025-03-16T09:46:17.3423473Z",
+    "scratch/README.md": "2025-03-16T09:42:56.2205303Z",
+    "scratch/exploration.ipynb": "2025-03-16T09:42:56.2205528Z",
     "src/notebook.ipynb": "2025-03-16T09:42:56.2210794Z",
     "src/source_A_1_raw_to_bronze_notebook.py": "2025-03-16T09:48:04.8093003Z",
     "src/source_A_2_bronze_to_silver_notebook.py": "2025-03-16T09:57:58.8998982Z",
@@ -14,10 +17,13 @@
     "tests/test_source_A_end_to_end.py": "2025-03-16T09:48:42.9772048Z"
   },
   "local_to_remote_names": {
+    ".github/workflows/databricks_ci.yml": ".github/workflows/databricks_ci.yml",
     "README.md": "README.md",
     "databricks.yml": "databricks.yml",
     "resources/integration_test_source_A_end_to_end_job.yml": "resources/integration_test_source_A_end_to_end_job.yml",
     "resources/source_A_end_to_end_job.yml": "resources/source_A_end_to_end_job.yml",
+    "scratch/README.md": "scratch/README.md",
+    "scratch/exploration.ipynb": "scratch/exploration",
     "src/notebook.ipynb": "src/notebook",
     "src/source_A_1_raw_to_bronze_notebook.py": "src/source_A_1_raw_to_bronze_notebook",
     "src/source_A_2_bronze_to_silver_notebook.py": "src/source_A_2_bronze_to_silver_notebook",
@@ -25,10 +31,13 @@
     "tests/test_source_A_end_to_end.py": "tests/test_source_A_end_to_end"
   },
   "remote_to_local_names": {
+    ".github/workflows/databricks_ci.yml": ".github/workflows/databricks_ci.yml",
     "README.md": "README.md",
     "databricks.yml": "databricks.yml",
     "resources/integration_test_source_A_end_to_end_job.yml": "resources/integration_test_source_A_end_to_end_job.yml",
     "resources/source_A_end_to_end_job.yml": "resources/source_A_end_to_end_job.yml",
+    "scratch/README.md": "scratch/README.md",
+    "scratch/exploration": "scratch/exploration.ipynb",
     "src/notebook": "src/notebook.ipynb",
     "src/source_A_1_raw_to_bronze_notebook": "src/source_A_1_raw_to_bronze_notebook.py",
     "src/source_A_2_bronze_to_silver_notebook": "src/source_A_2_bronze_to_silver_notebook.py",
