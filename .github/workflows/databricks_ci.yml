@@ -43,7 +43,7 @@ jobs:
         run: |
           echo $DAB_PATH
           ls -l $DAB_PATH
-          zip -r ${{ github.workspace }}/databricks_build.zip $DAB_PATH
+          zip -r ${{ github.workspace }}/databricks_build.zip .
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
