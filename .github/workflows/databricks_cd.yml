@@ -60,7 +60,7 @@ jobs:
           echo "Deploying DAB bundle..."
           databricks bundle deploy -t prod 
           echo "Running the DAB bundle..."
-          databricks bundle run source_A_etl
+          databricks bundle run -t prod source_A_etl
 
       # - name: Run Databricks Asset Bundle
       #   run: |
