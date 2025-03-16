@@ -59,12 +59,14 @@ jobs:
           cd databricks_build
           echo "Deploying DAB bundle..."
           databricks bundle deploy -t prod 
-
-      - name: Run Databricks Asset Bundle
-        run: |
-          cd databricks_build
           echo "Running the DAB bundle..."
           databricks bundle run source_A_etl
+
+      # - name: Run Databricks Asset Bundle
+      #   run: |
+      #     cd databricks_build
+      #     echo "Running the DAB bundle..."
+      #     databricks bundle run source_A_etl
 
       - name: Confirm Deployment
         run: |
