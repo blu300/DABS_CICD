@@ -1,0 +1,48 @@
+name: Databricks CI/CD
+
+on:
+  push:
+    branches:
+      - master  # Triggers only on master branch
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+
+    env:
+      DATABRICKS_BUNDLE_ROOT: ${{ github.workspace }}/$DAB_PATH
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+          clean: true
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+          architecture: 'x64'
+
+      - name: Install Databricks CLI
+        run: |
+          curl -fsSL https://raw.githubusercontent.com/databricks/setup-cli/main/install.sh | sh
+
+      - name: Validate, deploy, run tests, and destroy bundle on dev
+        run: |
+          set -e
+          databricks bundle validate
+          databricks bundle deploy -t dev
+          databricks bundle run integration_test_source_A_end_to_end_job
+          databricks bundle destroy -t dev --auto-approve
+
+      - name: Archive Databricks Asset Bundle
+        run: |
+          zip -r ${{ github.workspace }}/databricks_build.zip $DAB_PATH
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: DatabricksBuild
+          path: databricks_build.zip
