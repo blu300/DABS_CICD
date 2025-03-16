@@ -1,9 +1,4 @@
 # Databricks notebook source
-
-pip install nutter
-
-# COMMAND ----------
-
 # DBTITLE 1,Imports
 from runtime.nutterfixture import NutterFixture, tag
 import random
