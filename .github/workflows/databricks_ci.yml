@@ -3,7 +3,7 @@ name: Databricks CI/CD
 on:
   push:
     branches:
-      - master  # Triggers only on master branch
+      - main
 
 jobs:
   build:
