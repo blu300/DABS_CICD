@@ -41,8 +41,6 @@ jobs:
 
       - name: Archive Databricks Asset Bundle
         run: |
-          echo ${{ secrets.DAB_PATH }}
-          echo ${{ secrets.DAB_PATH }}
           ls -l $DAB_PATH
           zip -r ${{ github.workspace }}/databricks_build.zip .
 
