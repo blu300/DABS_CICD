@@ -19,14 +19,16 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: List Files Before downloading Artifact
+      - name: Print Run ID
         run: |
-          ls -l ${{ github.workspace }}
+          echo "run id: ${{ github.event.workflow_run.id }}"
 
       - name: Download Databricks Build Artifact
         uses: actions/download-artifact@v4
         with:
           name: DatabricksBuild
+          github-token: ${{ secrets.GH_PAT }}
+          run-id: ${{ github.event.workflow_run.id }}"
           path: ${{ github.workspace }}
 
       - name: Install Databricks CLI
