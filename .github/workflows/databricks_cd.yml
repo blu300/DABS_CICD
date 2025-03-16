@@ -40,6 +40,14 @@ jobs:
         run: |
           curl -fsSL https://raw.githubusercontent.com/databricks/setup-cli/main/install.sh | sh
 
+
+      - name: List cwd and files
+        run: |
+            echo "Current working directory:"
+            pwd
+            echo "Files in the current directory:"
+            ls -la
+            
       - name: Deploy Databricks Asset Bundle
         run: |
           echo "Deploying DAB bundle..."
