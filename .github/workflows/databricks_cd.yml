@@ -16,8 +16,8 @@ jobs:
       DATABRICKS_BUNDLE_PATH: ${{ github.workspace }}/databricks_build.zip  # The path to the zip artifact
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      # - name: Checkout repository
+      #   uses: actions/checkout@v4
 
       - name: Print Run ID
         run: |
@@ -47,7 +47,7 @@ jobs:
             pwd
             echo "Files in the current directory:"
             ls -la
-            
+
       - name: Deploy Databricks Asset Bundle
         run: |
           echo "Deploying DAB bundle..."
