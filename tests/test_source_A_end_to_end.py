@@ -80,4 +80,4 @@ gold_args = {"source_table": table_name_dict["silver"],
 # to see the test result report from within the notebook
 # result.exit(dbutils)
 
-assert 1==1
+assert 1==2
