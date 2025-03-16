@@ -65,7 +65,7 @@ targets:
                 node_type_id: Standard_D5_v2
                 autoscale:
                   min_workers: 1
-                  max_workers: 5
+                  max_workers: 1
           tasks:
             - task_key: upload_to_bronze
               job_cluster_key: job_cluster_category_1
