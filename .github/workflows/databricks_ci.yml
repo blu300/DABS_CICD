@@ -46,6 +46,15 @@ jobs:
           ls -l $DAB_PATH
           zip -r ${{ github.workspace }}/databricks_build.zip .
 
+      - name: Print Path of Artifact Before Uploading
+        run: |
+          echo "Uploading artifact from path: ${{ github.workspace }}/databricks_build.zip"
+      
+      - name: List Files Before Uploading Artifact
+        run: |
+          ls -l ${{ github.workspace }}
+
+
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
