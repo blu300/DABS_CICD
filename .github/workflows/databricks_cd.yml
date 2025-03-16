@@ -19,6 +19,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: List Files Before downloading Artifact
+        run: |
+          ls -l ${{ github.workspace }}
+
       - name: Download Databricks Build Artifact
         uses: actions/download-artifact@v4
         with:
