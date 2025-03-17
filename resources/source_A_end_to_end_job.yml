@@ -1,4 +1,4 @@
-# job for asset_bundles_template_test_1.
+# job for asset_bundles_template_test_1.     
 resources:
   jobs:
     source_A_etl:
@@ -13,7 +13,6 @@ resources:
               destination_table: "source_a.bronze"
           job_cluster_key: job_cluster
 
-
         - task_key: bronze_to_silver
           notebook_task:
             notebook_path: ../src/source_A_2_bronze_to_silver_notebook.py
@@ -21,13 +20,12 @@ resources:
             - task_key: upload_to_bronze
           job_cluster_key: job_cluster
 
-
-      #   - task_key: silver_to_gold
-      #     notebook_task:
-      #       notebook_path: ../src/source_A_3_silver_to_gold_notebook.py
-      #     depends_on:
-      #       - task_key: bronze_to_silver
-      #     job_cluster_key: job_cluster
+        - task_key: silver_to_gold
+          notebook_task:
+            notebook_path: ../src/source_A_3_silver_to_gold_notebook.py
+          depends_on:
+            - task_key: bronze_to_silver
+          job_cluster_key: job_cluster
 
       job_clusters:
         - job_cluster_key: job_cluster
