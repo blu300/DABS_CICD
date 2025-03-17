@@ -8,10 +8,11 @@ resources:
         - task_key: upload_to_bronze
           notebook_task:
             notebook_path: ../src/source_A_1_raw_to_bronze_notebook.py
+            base_parameters:
+              source_table: "source_a.test_table"
+              destination_table: "source_a.bronze"
           job_cluster_key: job_cluster
-          parameters:
-            source_table: "source_a.test_table"
-            destination_table: "source_a.bronze"
+
 
         - task_key: bronze_to_silver
           notebook_task:
