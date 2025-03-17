@@ -55,29 +55,29 @@ targets:
       include:
         - src/*
 
-    resources:
-      jobs:
-        source_A_etl:
-          job_clusters:
-            - job_cluster_key: job_cluster_category_1
-              new_cluster:
-                spark_version: 13.3.x-scala2.12
-                node_type_id: Standard_D5_v2
-                autoscale:
-                  min_workers: 1
-                  max_workers: 1
-          tasks:
-            - task_key: upload_to_bronze
-              job_cluster_key: job_cluster_category_1
-              notebook_task:
-                notebook_path: ./src/source_A_1_raw_to_bronze_notebook.py
+    # resources:
+    #   jobs:
+    #     source_A_etl:
+    #       job_clusters:
+    #         - job_cluster_key: job_cluster_category_1
+    #           new_cluster:
+    #             spark_version: 13.3.x-scala2.12
+    #             node_type_id: Standard_D5_v2
+    #             autoscale:
+    #               min_workers: 1
+    #               max_workers: 1
+    #       tasks:
+    #         - task_key: upload_to_bronze
+    #           job_cluster_key: job_cluster_category_1
+    #           notebook_task:
+    #             notebook_path: ./src/source_A_1_raw_to_bronze_notebook.py
 
-            - task_key: bronze_to_silver
-              job_cluster_key: job_cluster_category_1
-              notebook_task:
-                notebook_path: ./src/source_A_2_bronze_to_silver_notebook.py
+    #         - task_key: bronze_to_silver
+    #           job_cluster_key: job_cluster_category_1
+    #           notebook_task:
+    #             notebook_path: ./src/source_A_2_bronze_to_silver_notebook.py
 
-            - task_key: silver_to_gold
-              job_cluster_key: job_cluster_category_1
-              notebook_task:
-                notebook_path: ./src/source_A_3_silver_to_gold_notebook.py
+    #         - task_key: silver_to_gold
+    #           job_cluster_key: job_cluster_category_1
+    #           notebook_task:
+    #             notebook_path: ./src/source_A_3_silver_to_gold_notebook.py
