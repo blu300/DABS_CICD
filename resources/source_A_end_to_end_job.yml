@@ -29,9 +29,9 @@ resources:
       #       - task_key: bronze_to_silver
       #     job_cluster_key: job_cluster
 
-      # job_clusters:
-      #   - job_cluster_key: job_cluster
-      #     new_cluster:
-      #       spark_version: 13.3.x-scala2.12
-      #       node_type_id: Standard_D3_v2
-      #       num_workers: 1
+      job_clusters:
+        - job_cluster_key: job_cluster
+          new_cluster:
+            spark_version: 13.3.x-scala2.12
+            node_type_id: Standard_D3_v2
+            num_workers: 1
