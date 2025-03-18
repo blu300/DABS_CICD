@@ -41,6 +41,13 @@ jobs:
         run: |
               python bump_version.py  # Run the Python script that bumps the version
 
+      - name: Commit updated VERSION file
+        run: |
+                git config --global user.name "github-actions"
+                git config --global user.email "github-actions@github.com"
+                git add VERSION
+                git commit -m "Increment version to $(cat VERSION)"
+                git push
 
       - name: Validate, deploy, run tests, and destroy bundle on dev
         run: |
