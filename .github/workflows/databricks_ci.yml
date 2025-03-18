@@ -41,9 +41,6 @@ jobs:
         run: |
               python bump_version.py  # Run the Python script that bumps the version
 
-      - name: Move wheel file to wheels folder
-        run: |
-            databricks fs cp /Workspace/Users/bbluestone@outlook.com/.bundle/source-A-bundle/dev/artifacts/.internal/my_wheel-0.1.6-py3-none-any.whl /Workspace/Users/bbluestone@outlook.com/wheels/my_wheel-0.1.weee-py3-none-any.whl
 
       - name: Validate, deploy, run tests, and destroy bundle on dev
         run: |
@@ -51,7 +48,11 @@ jobs:
               databricks bundle validate
               databricks bundle deploy -t dev
               databricks bundle run -t dev wheel-job
-    
+
+      - name: Move wheel file to wheels folder
+        run: |
+              databricks fs cp /Workspace/Users/bbluestone@outlook.com/.bundle/source-A-bundle/dev/artifacts/.internal/my_wheel-0.1.6-py3-none-any.whl /Workspace/Users/bbluestone@outlook.com/wheels/my_wheel-0.1.weee-py3-none-any.whl
+          
 
       # - name: Validate, deploy, run tests, and destroy bundle on dev
       #   run: |
