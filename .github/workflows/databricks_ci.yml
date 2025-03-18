@@ -32,8 +32,8 @@ jobs:
       - name: Check for changes in src/my_wheel
         id: check_changes
         run: |
-          git fetch origin main  # Make sure the latest history is fetched
-          if git diff --exit-code --quiet origin/main -- src/my_wheel; then
+          git diff --exit-code --quiet HEAD -- src/my_wheel
+          if [ $? -eq 0 ]; then
             echo "No changes in src/my_wheel"
           else
             echo "Changes detected in src/my_wheel"
