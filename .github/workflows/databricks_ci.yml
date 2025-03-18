@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - 'learning_cicd/src/my_wheel/**/*'
+      - 'src/my_wheel/**/*'
 
 jobs:
   build:
