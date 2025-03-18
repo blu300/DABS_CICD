@@ -1,64 +1,64 @@
-name: Databricks CD Pipeline
+# name: Databricks CD Pipeline
 
-on:
-  workflow_run:
-    workflows: ["Databricks CI/CD"]  # This is the name of your CI pipeline.
-    types:
-      - completed
+# on:
+#   workflow_run:
+#     workflows: ["Databricks CI/CD"]  # This is the name of your CI pipeline.
+#     types:
+#       - completed
 
-jobs:
-  deploy:
-    runs-on: ubuntu-22.04
+# jobs:
+#   deploy:
+#     runs-on: ubuntu-22.04
 
-    env:
-      DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
-      DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
-      DATABRICKS_BUNDLE_PATH: ${{ github.workspace }}/databricks_build.zip  # The path to the zip artifact
+#     env:
+#       DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
+#       DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
+#       DATABRICKS_BUNDLE_PATH: ${{ github.workspace }}/databricks_build.zip  # The path to the zip artifact
 
-    steps:
-      - name: Print Run ID
-        run: |
-          echo "run id: ${{ github.event.workflow_run.id }}"
+#     steps:
+#       - name: Print Run ID
+#         run: |
+#           echo "run id: ${{ github.event.workflow_run.id }}"
 
-      - name: Download Databricks Build Artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: DatabricksBuild
-          github-token: ${{ secrets.GH_PAT }}
-          run-id: ${{ github.event.workflow_run.id }}
-          path: ${{ github.workspace }}
+#       - name: Download Databricks Build Artifact
+#         uses: actions/download-artifact@v4
+#         with:
+#           name: DatabricksBuild
+#           github-token: ${{ secrets.GH_PAT }}
+#           run-id: ${{ github.event.workflow_run.id }}
+#           path: ${{ github.workspace }}
       
-      - name: Unzip the Artifact
-        run: |
-          echo "Unzipping the artifact... "
-          unzip ${{ github.workspace }}/databricks_build.zip -d ${{ github.workspace }}/databricks_build/
+#       - name: Unzip the Artifact
+#         run: |
+#           echo "Unzipping the artifact... "
+#           unzip ${{ github.workspace }}/databricks_build.zip -d ${{ github.workspace }}/databricks_build/
 
-      - name: Install Databricks CLI
-        run: |
-          curl -fsSL https://raw.githubusercontent.com/databricks/setup-cli/main/install.sh | sh
+#       - name: Install Databricks CLI
+#         run: |
+#           curl -fsSL https://raw.githubusercontent.com/databricks/setup-cli/main/install.sh | sh
 
 
-      - name: List cwd and files
-        run: |
-            echo "Current working directory:"
-            pwd
-            echo "Files in the current directory:"
-            ls -la
-            echo "Changing working directory"
-            cd databricks_build
-            echo "New current working directory:"
-            pwd
-            echo "Files in the current directory:"
-            ls -la
+#       - name: List cwd and files
+#         run: |
+#             echo "Current working directory:"
+#             pwd
+#             echo "Files in the current directory:"
+#             ls -la
+#             echo "Changing working directory"
+#             cd databricks_build
+#             echo "New current working directory:"
+#             pwd
+#             echo "Files in the current directory:"
+#             ls -la
 
-      - name: Deploy Databricks Asset Bundle
-        run: |
-          cd databricks_build
-          echo "Deploying DAB bundle..."
-          databricks bundle deploy -t prod 
-          echo "Running the DAB bundle..."
-          databricks bundle run -t prod source_A_etl
+#       - name: Deploy Databricks Asset Bundle
+#         run: |
+#           cd databricks_build
+#           echo "Deploying DAB bundle..."
+#           databricks bundle deploy -t prod 
+#           echo "Running the DAB bundle..."
+#           databricks bundle run -t prod source_A_etl
 
-      - name: Confirm Deployment
-        run: |
-          echo "DAB bundle deployed and job executed successfully!"
+#       - name: Confirm Deployment
+#         run: |
+#           echo "DAB bundle deployed and job executed successfully!"
