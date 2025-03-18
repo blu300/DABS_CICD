@@ -2,7 +2,7 @@ from my_wheel.my_module import *
 
 def main():
 
-  first = 309
+  first = 310
   second = 400
 
   print(f"{first} + {second} = {add_two_numbers(first, second)}")
