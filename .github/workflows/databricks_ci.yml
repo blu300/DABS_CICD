@@ -47,7 +47,7 @@ jobs:
           databricks bundle deploy -t dev
           # databricks bundle run integration_test_end_to_end_job
           # databricks bundle destroy -t dev --auto-approve
-          databricks bundle run -t prod wheel-job
+          databricks bundle run -t dev wheel-job
 
       - name: Archive Databricks Asset Bundle
         run: |
