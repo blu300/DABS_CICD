@@ -49,7 +49,7 @@ jobs:
               set -e
               databricks bundle validate
               databricks bundle deploy -t dev
-              databricks bundle run -t dev wheel-job
+              # databricks bundle run -t dev wheel-job
 
       # - name: Move wheel file to wheels folder I hope
       #   run: |
