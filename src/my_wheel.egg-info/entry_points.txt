@@ -1,0 +1,2 @@
+[packages]
+main = my_wheel.main:main

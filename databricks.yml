@@ -22,19 +22,16 @@ variables:
     default: 0316-094940-oenlls44
 
 targets:
-  # The 'dev' target, for development purposes. This target is the default.
   dev:
-    # We use 'mode: development' to indicate this is a personal development copy:
-    # - Deployed resources get prefixed with '[dev my_user_name]'
-    # - Any job schedules and triggers are paused by default
-    # - The 'development' mode is used for Delta Live Tables pipelines
     mode: development
     default: true
     workspace:
       host: https://adb-1909067673949101.1.azuredatabricks.net/
 
-  #############################################################################################################################
-  # The 'prod' target, used for production deployment.
+    # sync:
+    #   include:
+    #     - src/*
+    #     - resources/*.yml
   prod:
     # We use 'mode: production' to indicate this is a production deployment.
     # Doing so enables strict verification of the settings below.
@@ -45,15 +42,30 @@ targets:
       # so we use a shared path.
       root_path: ${var.prod_path}
     run_as:
-      # This runs as user.name@domain.com in production. 
-      # We could also use a service principal here
-      # using service_principal_name 
       # (see https://docs.databricks.com/dev-tools/bundles/permissions.html).
       user_name: bbluestone@outlook.com
 
     sync:
       include:
         - src/*
+        - resources/*.yml
+        
+resources:
+  jobs:
+    wheel-job:
+      name: wheel-job
+      tasks:
+        - task_key: wheel-task
+          new_cluster:
+            spark_version: 13.3.x-scala2.12
+            node_type_id: Standard_D3_v2
+            data_security_mode: USER_ISOLATION
+            num_workers: 1
+          python_wheel_task:
+            entry_point: main
+            package_name: my_wheel
+          libraries:
+            - whl: ./dist/*.whl
 
     # resources:
     #   jobs:

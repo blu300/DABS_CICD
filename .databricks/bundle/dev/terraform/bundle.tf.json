@@ -66,6 +66,10 @@
           {
             "job_cluster_key": "job_cluster",
             "notebook_task": {
+              "base_parameters": {
+                "destination_table": "source_a.bronze",
+                "source_table": "source_a.test_table"
+              },
               "notebook_path": "/Users/bbluestone@outlook.com/.bundle/source-A-bundle/dev/files/src/source_A_1_raw_to_bronze_notebook"
             },
             "task_key": "upload_to_bronze"
@@ -93,6 +97,42 @@
               "notebook_path": "/Users/bbluestone@outlook.com/.bundle/source-A-bundle/dev/files/src/source_A_3_silver_to_gold_notebook"
             },
             "task_key": "silver_to_gold"
+          }
+        ]
+      },
+      "wheel-job": {
+        "deployment": {
+          "kind": "BUNDLE",
+          "metadata_file_path": "/Users/bbluestone@outlook.com/.bundle/source-A-bundle/dev/state/metadata.json"
+        },
+        "edit_mode": "UI_LOCKED",
+        "format": "MULTI_TASK",
+        "max_concurrent_runs": 4,
+        "name": "[dev bbluestone] wheel-job",
+        "queue": {
+          "enabled": true
+        },
+        "tags": {
+          "dev": "bbluestone"
+        },
+        "task": [
+          {
+            "library": [
+              {
+                "whl": "dist\\*.whl"
+              }
+            ],
+            "new_cluster": {
+              "data_security_mode": "USER_ISOLATION",
+              "node_type_id": "Standard_D3_v2",
+              "num_workers": 1,
+              "spark_version": "13.3.x-scala2.12"
+            },
+            "python_wheel_task": {
+              "entry_point": "main",
+              "package_name": "my_wheel"
+            },
+            "task_key": "wheel-task"
           }
         ]
       }

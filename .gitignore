@@ -1,2 +1,5 @@
 
 .databricks
+build
+dist
+src/my_package/my_package.egg-info

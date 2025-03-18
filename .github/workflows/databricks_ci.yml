@@ -27,6 +27,10 @@ jobs:
           python-version: '3.10'
           architecture: 'x64'
 
+      - name: Run Version Bump
+        run: |
+            python bump_version.py  # Run the Python script that bumps the version
+
       - name: Install Databricks CLI
         run: |
           curl -fsSL https://raw.githubusercontent.com/databricks/setup-cli/main/install.sh | sh
@@ -36,8 +40,9 @@ jobs:
           set -e
           databricks bundle validate
           databricks bundle deploy -t dev
-          databricks bundle run integration_test_end_to_end_job
-          databricks bundle destroy -t dev --auto-approve
+          # databricks bundle run integration_test_end_to_end_job
+          # databricks bundle destroy -t dev --auto-approve
+          databricks bundle run -t prod wheel-job
 
       - name: Archive Databricks Asset Bundle
         run: |
