@@ -2,5 +2,4 @@
 .databricks
 build
 dist
-src/my_package/my_package.egg-info
-src/my_package/my_wheel.egg-info
+src/my_wheel/my_wheel.egg-info

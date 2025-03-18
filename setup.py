@@ -1,7 +1,4 @@
 from setuptools import setup, find_packages
-import bump_version
-
-bump_version.increment_version()
 
 with open("VERSION", "r") as f:
     version = f.read().strip()
