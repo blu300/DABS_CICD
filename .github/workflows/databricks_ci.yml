@@ -51,7 +51,7 @@ jobs:
               databricks bundle deploy -t dev
               databricks bundle run -t dev wheel-job
 
-      # - name: Move wheel file to wheels folder
+      # - name: Move wheel file to wheels folder I hope
       #   run: |
       #         databricks fs cp /Workspace/Users/bbluestone@outlook.com/.bundle/source-A-bundle/dev/artifacts/.internal/my_wheel-0.1.6-py3-none-any.whl /Workspace/Users/bbluestone@outlook.com/wheels/my_wheel-0.1.weee-py3-none-any.whl
           
