@@ -4,7 +4,7 @@ def main():
 
 
   first = 3133
-  second = 4003
+  second = 400
   print('hi world')
   print(f"{first} + {second} = {add_two_numbers(first, second)}")
   print(f"{second} - {first} = {subtract_two_numbers(second, first)}")

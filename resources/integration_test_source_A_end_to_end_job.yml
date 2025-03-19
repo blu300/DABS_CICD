@@ -7,5 +7,5 @@ resources:
       tasks:
         - task_key: source_a_end_to_end_integration_test
           notebook_task:
-            notebook_path: ../tests/test_source_A_end_to_end.py
+            notebook_path: ../tests/integration/test_source_A_end_to_end.py
           existing_cluster_id: ${var.cluster_id_testing_cluster}
