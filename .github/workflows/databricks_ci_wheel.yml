@@ -35,6 +35,10 @@ jobs:
           python -m pip install --upgrade pip
           pip install wheel setuptools  # Install the necessary build tools
 
+      - name: Install dependencies
+        run: |
+            python -m .\tests\test_wheel.py
+            
 
       - name: Install Databricks CLI
         run: |
@@ -49,7 +53,6 @@ jobs:
               set -e
               databricks bundle validate
               databricks bundle deploy -t dev
-              databricks bundle run -t wheel_test
               # databricks bundle run -t dev wheel-job
 
       - name: Move wheel file to wheels folder I hope
