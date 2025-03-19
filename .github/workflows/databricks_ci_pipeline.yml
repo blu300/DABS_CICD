@@ -1,4 +1,4 @@
-name: Databricks CI/CD
+name: Databricks CI Pipeline
 
 on:
   push:
