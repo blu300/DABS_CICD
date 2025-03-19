@@ -1,0 +1,11 @@
+# job for asset_bundles_template_test_1.
+resources:
+  jobs:
+    wheel-test:
+      name: wheel_test
+
+      tasks:
+        - task_key: wheel_test_notebook
+          notebook_task:
+            notebook_path: ../tests/test_wheel.py
+          existing_cluster_id: ${var.cluster_id_testing_cluster}
