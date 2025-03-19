@@ -34,13 +34,6 @@ jobs:
         run: |
           curl -fsSL https://raw.githubusercontent.com/databricks/setup-cli/main/install.sh | sh
 
-      - name: Validate, deploy, run tests, and destroy bundle on dev
-        run: |
-              set -e
-              databricks bundle validate
-              databricks bundle deploy -t dev
-              databricks bundle run -t dev wheel-job
-
 
       - name: Validate, deploy, run tests, and destroy bundle on dev
         run: |
