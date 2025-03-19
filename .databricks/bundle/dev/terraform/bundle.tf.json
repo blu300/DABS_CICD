@@ -31,7 +31,7 @@
           {
             "existing_cluster_id": "0316-094940-oenlls44",
             "notebook_task": {
-              "notebook_path": "/Users/bbluestone@outlook.com/.bundle/source-A-bundle/dev/files/tests/test_source_A_end_to_end"
+              "notebook_path": "/Users/bbluestone@outlook.com/.bundle/source-A-bundle/dev/files/tests/integration/test_source_A_end_to_end"
             },
             "task_key": "source_a_end_to_end_integration_test"
           }
