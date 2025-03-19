@@ -30,19 +30,9 @@ jobs:
           python-version: '3.10'
           architecture: 'x64'
 
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install wheel setuptools  # Install the necessary build tools
-
-
       - name: Install Databricks CLI
         run: |
           curl -fsSL https://raw.githubusercontent.com/databricks/setup-cli/main/install.sh | sh
-
-      - name: Run Version Bump
-        run: |
-              python bump_version.py  # Run the Python script that bumps the version
 
       - name: Validate, deploy, run tests, and destroy bundle on dev
         run: |
@@ -51,18 +41,14 @@ jobs:
               databricks bundle deploy -t dev
               databricks bundle run -t dev wheel-job
 
-      # - name: Move wheel file to wheels folder I hope
-      #   run: |
-      #         databricks fs cp /Workspace/Users/bbluestone@outlook.com/.bundle/source-A-bundle/dev/artifacts/.internal/my_wheel-0.1.6-py3-none-any.whl /Workspace/Users/bbluestone@outlook.com/wheels/my_wheel-0.1.weee-py3-none-any.whl
-          
 
-      # - name: Validate, deploy, run tests, and destroy bundle on dev
-      #   run: |
-      #     set -e
-      #     databricks bundle validate
-      #     databricks bundle deploy -t dev
-      #     databricks bundle run integration_test_end_to_end_job
-      #     databricks bundle destroy -t dev --auto-approve
+      - name: Validate, deploy, run tests, and destroy bundle on dev
+        run: |
+          set -e
+          databricks bundle validate
+          databricks bundle deploy -t dev
+          databricks bundle run integration_test_end_to_end_job
+          databricks bundle destroy -t dev --auto-approve
 
 
       - name: Archive Databricks Asset Bundle
