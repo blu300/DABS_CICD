@@ -53,5 +53,5 @@ jobs:
 
       - name: Move wheel file to wheels folder I hope
         run: |
-              databricks workspace list Users/bbluestone@outlook.com/.bundle/source-A-bundle/dev/artifacts/.internal
+              databricks workspace list /Users/bbluestone@outlook.com/.bundle/source-A-bundle/dev/artifacts/.internal
           
