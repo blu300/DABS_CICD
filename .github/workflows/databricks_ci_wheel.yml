@@ -35,9 +35,10 @@ jobs:
           python -m pip install --upgrade pip
           pip install wheel setuptools  # Install the necessary build tools
 
-      - name: Install dependencies
+      - name: Run test lol - convert this to pytest
         run: |
-            python -m .\tests\test_wheel.py
+            pip install pytest  # Ensure pytest is installed
+            pytest tests/
             
 
       - name: Install Databricks CLI
