@@ -30,14 +30,15 @@ jobs:
           python-version: '3.10'
           architecture: 'x64'
 
-      - name: Install dependencies
+      - name: Install dependencies 
         run: |
           python -m pip install --upgrade pip
-          pip install wheel setuptools  # Install the necessary build tools
+          # pip install wheel setuptools  # Install the necessary build tools
+          pip install wheel setuptools pytest nutter
 
-      - name: Run test lol - convert this to pytest
+      - name: Run tests
         run: |
-            pip install pytest  # Ensure pytest is installed
+            # pip install pytest  # Ensure pytest is installed
             pytest tests/
             
 
