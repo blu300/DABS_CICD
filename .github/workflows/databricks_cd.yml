@@ -2,7 +2,7 @@ name: Databricks CD Pipeline
 
 on:
   workflow_run:
-    workflows: ["Databricks CI/CD"]  # This is the name of your CI pipeline.
+    workflows: ["Databricks CI Pipeline"]  # This is the name of your CI pipeline.
     types:
       - completed
 
@@ -56,8 +56,8 @@ jobs:
           cd databricks_build
           echo "Deploying DAB bundle..."
           databricks bundle deploy -t prod 
-          echo "Running the DAB bundle..."
-          databricks bundle run -t prod source_A_etl
+          # echo "Running the DAB bundle..."
+          # databricks bundle run -t prod source_A_etl
 
       - name: Confirm Deployment
         run: |
