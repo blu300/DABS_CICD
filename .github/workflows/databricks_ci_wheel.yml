@@ -38,7 +38,6 @@ jobs:
 
       - name: Run tests
         run: |
-            # pip install pytest  # Ensure pytest is installed
             pytest tests/wheel
             
       - name: Install Databricks CLI
@@ -53,7 +52,7 @@ jobs:
         run: |
               set -e
               databricks bundle validate
-              databricks bundle deploy -t dev
-              # databricks bundle run -t dev wheel-job
-
+              databricks bundle deploy -t dev 
+              databricks bundle run -t dev wheel-job
+              databricks bundle destroy -t dev 
  

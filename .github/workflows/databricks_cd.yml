@@ -55,7 +55,6 @@ jobs:
           cd databricks_build
           echo "Deploying DAB bundle..."
           databricks bundle deploy -t prod
-          # databricks bundle deploy -t prod --profile SP
           # echo "Running the DAB bundle..."
           # databricks bundle run -t prod source_A_etl
         env:
@@ -65,3 +64,6 @@ jobs:
       - name: Confirm Deployment
         run: |
           echo "DAB bundle deployed and job executed successfully ! "
+          databricks workspace mkdirs /Workspace/Production/wheels
+          databricks workspace move /Workspace/Production/source-A-bundle/artifacts/.internal/my_wheel-0.1.5-py3-none-any.whl /Workspace/Production/wheels/finished.whl
+
