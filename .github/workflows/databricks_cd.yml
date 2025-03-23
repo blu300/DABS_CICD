@@ -12,10 +12,8 @@ jobs:
 
     env:
       DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
-      # DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
       DATABRICKS_BUNDLE_PATH: ${{ github.workspace }}/databricks_build.zip  # The path to the zip artifact
-      DATABRICKS_CLIENT_ID: ${{ secrets.SP_ID}}
-      DATABRICKS_CLIENT_SECRET: ${{secrets.SP_TOKEN}}
+      
 
     steps:
       - name: Print Run ID
@@ -65,7 +63,8 @@ jobs:
           # echo "Running the DAB bundle..."
           # databricks bundle run -t prod source_A_etl
         env:
-          DATABRICKS_TOKEN: ${{ secrets.SP_TOKEN }}
+          DATABRICKS_CLIENT_ID: ${{ secrets.SP_ID}}
+          DATABRICKS_CLIENT_SECRET: ${{secrets.SP_TOKEN}}
 
       - name: Confirm Deployment
         run: |
