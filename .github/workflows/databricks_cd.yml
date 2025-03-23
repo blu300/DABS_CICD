@@ -12,7 +12,7 @@ jobs:
 
     env:
       DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
-      DATABRICKS_TOKEN: ${{ secrets.SP_TOKEN }}
+      DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
       DATABRICKS_BUNDLE_PATH: ${{ github.workspace }}/databricks_build.zip  # The path to the zip artifact
 
     steps:
@@ -37,18 +37,23 @@ jobs:
         run: |
           curl -fsSL https://raw.githubusercontent.com/databricks/setup-cli/main/install.sh | sh
       
-      - name: Login 
+      - name: Configure Databricks Authentication
         run: |
-          databricks auth login --host ${DATABRICKS_HOST} --profile SP
+            mkdir -p ~/.databricks
+            echo "[SP]" > ~/.databrickscfg
+            echo "host = $DATABRICKS_HOST" >> ~/.databrickscfg
+            echo "client_id = $DATABRICKS_CLIENT_ID" >> ~/.databrickscfg
+            echo "client_secret = $DATABRICKS_CLIENT_SECRET" >> ~/.databrickscfg
+            echo "auth_type = oauth" >> ~/.databrickscfg
+        env:
+            DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
+            DATABRICKS_CLIENT_ID: ${{ secrets.SP_ID }}
+            DATABRICKS_CLIENT_SECRET: ${{ secrets.SP_TOKEN }}
+        
 
       - name: Get Databricks CLI Logged-in User
         run: |
               databricks auth describe
-
-      - name: Verify Token Length
-        run: |
-              echo "Token length: ${DATABRICKS_TOKEN}"
-            
 
       - name: List cwd and files
         run: |
