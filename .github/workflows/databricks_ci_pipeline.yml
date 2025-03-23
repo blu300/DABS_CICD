@@ -48,7 +48,7 @@ jobs:
         run: |
           databricks auth describe
 
-      - name: Validate, deploy, run tests, and destroy bundle on dev
+      - name: Validate, deploy, run tests, and destroy bundle in dev
         run: |
           set -e
           databricks bundle validate
