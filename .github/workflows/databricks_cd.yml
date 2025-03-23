@@ -1,3 +1,5 @@
+# I am listing two ways to do this - one via env vars (top, commented out), one by doing it as full step. Both work.
+
 # name: Databricks CD Pipeline
 
 # on:
@@ -108,7 +110,7 @@ jobs:
         run: |
           curl -fsSL https://raw.githubusercontent.com/databricks/setup-cli/main/install.sh | sh
 
-      - name: Set Databricks Authentication  # 🔥 Fix: Set auth variables before using CLI
+      - name: Set Databricks Authentication  
         run: |
           echo "Configuring Databricks authentication..."
           export DATABRICKS_ACCESS_TOKEN=$(databricks oauth token --client-id $DATABRICKS_CLIENT_ID --client-secret $DATABRICKS_CLIENT_SECRET --host $DATABRICKS_HOST)
@@ -133,17 +135,4 @@ jobs:
           echo "Deploying DAB bundle..."
           databricks bundle deploy -t prod
 
-      - name: Export the File from Databricks Workspace to Local Directory
-        run: |
-            echo "Exporting the wheel file from Databricks workspace..."
-            databricks workspace export /Workspace/Production/source-A-bundle/artifacts/.internal/my_wheel-0.1.5-py3-none-any.whl 
-  
-      - name: Import the File to Target Databricks Workspace Folder
-        run: |
-            echo "Importing the wheel file to the target workspace folder..."
-            databricks workspace import ./my_wheel-0.1.5-py3-none-any.whl /Workspace/Production/wheels/finished.whl --overwrite
-  
-      - name: Confirm Deployment
-        run: |
-            echo "Deployment successful!"
-            databricks workspace ls /Workspace/Production/wheels/
+     
