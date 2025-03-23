@@ -60,7 +60,7 @@ jobs:
         run: |
           cd databricks_build
           echo "Deploying DAB bundle..."
-          databricks bundle deploy -t prod --profile SP
+          databricks bundle deploy -t prod # --profile SP
           # echo "Running the DAB bundle..."
           # databricks bundle run -t prod source_A_etl
         env:
