@@ -40,7 +40,7 @@ jobs:
 
       - name: Get Databricks CLI Logged-in User
         run: |
-              databricks auth whoami
+              databricks auth describe
 
       - name: List cwd and files
         run: |
