@@ -52,7 +52,7 @@ jobs:
         run: |
           set -e
           databricks bundle validate
-          databricks bundle deploy -t dev
+          databricks bundle deploy -t dev -p adb-1909067673949101
     #       databricks bundle run integration_test_end_to_end_job
     #       databricks bundle destroy -t dev --auto-approve
 
