@@ -133,8 +133,17 @@ jobs:
           echo "Deploying DAB bundle..."
           databricks bundle deploy -t prod
 
+      - name: Export the File from Databricks Workspace to Local Directory
+        run: |
+            echo "Exporting the wheel file from Databricks workspace..."
+            databricks workspace export /Workspace/Production/source-A-bundle/artifacts/.internal/my_wheel-0.1.5-py3-none-any.whl ./my_wheel-0.1.5-py3-none-any.whl
+  
+      - name: Import the File to Target Databricks Workspace Folder
+        run: |
+            echo "Importing the wheel file to the target workspace folder..."
+            databricks workspace import ./my_wheel-0.1.5-py3-none-any.whl /Workspace/Production/wheels/finished.whl --overwrite
+  
       - name: Confirm Deployment
         run: |
-          echo "DAB bundle deployed and job executed successfully!"
-          databricks workspace mkdirs /Workspace/Production/wheels
-          databricks workspace move /Workspace/Production/source-A-bundle/artifacts/.internal/my_wheel-0.1.5-py3-none-any.whl /Workspace/Production/wheels/finished.whl
+            echo "Deployment successful!"
+            databricks workspace ls /Workspace/Production/wheels/
