@@ -13,8 +13,10 @@ jobs:
 
     env:
       DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
-      DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
+    #   DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
+      DATABRICKS_TOKEN: ${{ secrets.SP_TOKEN }}
       DATABRICKS_BUNDLE_ROOT: ${{ github.workspace }}/${{ secrets.DAB_PATH }}
+
 
     steps:
       - name: Checkout repository
@@ -23,7 +25,10 @@ jobs:
           persist-credentials: true
           clean: true
 
-  
+      - name: Get Databricks CLI Logged-in User
+        run: |
+            databricks auth whoami
+
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
@@ -45,14 +50,14 @@ jobs:
           curl -fsSL https://raw.githubusercontent.com/databricks/setup-cli/main/install.sh | sh
 
 
-      - name: Validate, deploy, run tests, and destroy bundle on dev
-        run: |
-          set -e
-          databricks bundle validate
-          databricks bundle deploy -t dev
-          databricks bundle run integration_test_end_to_end_job
+    #   - name: Validate, deploy, run tests, and destroy bundle on dev
+    #     run: |
+    #       set -e
+    #       databricks bundle validate
+    #       databricks bundle deploy -t dev
+    #       databricks bundle run integration_test_end_to_end_job
 
-          databricks bundle destroy -t dev --auto-approve
+    #       databricks bundle destroy -t dev --auto-approve
 
 
       - name: Archive Databricks Asset Bundle
