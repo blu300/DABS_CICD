@@ -12,7 +12,6 @@ jobs:
 
     env:
       DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
-      # DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
       DATABRICKS_TOKEN: ${{ secrets.SP_TOKEN }}
       DATABRICKS_BUNDLE_PATH: ${{ github.workspace }}/databricks_build.zip  # The path to the zip artifact
 
@@ -42,6 +41,11 @@ jobs:
       - name: Get Databricks CLI Logged-in User
         run: |
               databricks auth describe
+
+      - name: Verify Token Length
+        run: |
+              echo "Token length: ${DATABRICKS_TOKEN}"
+            
 
       - name: List cwd and files
         run: |
