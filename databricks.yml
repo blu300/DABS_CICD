@@ -44,7 +44,7 @@ targets:
     run_as:
       # (see https://docs.databricks.com/dev-tools/bundles/permissions.html).
       # user_name: bbluestone@outlook.com
-      service_principal_name: '724b31cb-bccb-42dc-b251-3bbdbcf86df4'
+      service_principal_name: 724b31cb-bccb-42dc-b251-3bbdbcf86df4
 
     sync:
       include:

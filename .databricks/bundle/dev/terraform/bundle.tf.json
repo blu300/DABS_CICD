@@ -15,23 +15,23 @@
       "integration_test_end_to_end_job": {
         "deployment": {
           "kind": "BUNDLE",
-          "metadata_file_path": "/Users/bbluestone@outlook.com/.bundle/source-A-bundle/dev/state/metadata.json"
+          "metadata_file_path": "/Users/724b31cb-bccb-42dc-b251-3bbdbcf86df4/.bundle/source-A-bundle/dev/state/metadata.json"
         },
         "edit_mode": "UI_LOCKED",
         "format": "MULTI_TASK",
         "max_concurrent_runs": 4,
-        "name": "[dev bbluestone] integration_test",
+        "name": "[dev 724b31cb_bccb_42dc_b251_3bbdbcf86df4] integration_test",
         "queue": {
           "enabled": true
         },
         "tags": {
-          "dev": "bbluestone"
+          "dev": "724b31cb_bccb_42dc_b251_3bbdbcf86df4"
         },
         "task": [
           {
             "existing_cluster_id": "0316-094940-oenlls44",
             "notebook_task": {
-              "notebook_path": "/Users/bbluestone@outlook.com/.bundle/source-A-bundle/dev/files/tests/integration/test_source_A_end_to_end"
+              "notebook_path": "/Users/724b31cb-bccb-42dc-b251-3bbdbcf86df4/.bundle/source-A-bundle/dev/files/tests/integration/test_source_A_end_to_end"
             },
             "task_key": "source_a_end_to_end_integration_test"
           }
@@ -40,7 +40,7 @@
       "source_A_etl": {
         "deployment": {
           "kind": "BUNDLE",
-          "metadata_file_path": "/Users/bbluestone@outlook.com/.bundle/source-A-bundle/dev/state/metadata.json"
+          "metadata_file_path": "/Users/724b31cb-bccb-42dc-b251-3bbdbcf86df4/.bundle/source-A-bundle/dev/state/metadata.json"
         },
         "edit_mode": "UI_LOCKED",
         "format": "MULTI_TASK",
@@ -55,12 +55,12 @@
           }
         ],
         "max_concurrent_runs": 4,
-        "name": "[dev bbluestone] source_A_etl",
+        "name": "[dev 724b31cb_bccb_42dc_b251_3bbdbcf86df4] source_A_etl",
         "queue": {
           "enabled": true
         },
         "tags": {
-          "dev": "bbluestone"
+          "dev": "724b31cb_bccb_42dc_b251_3bbdbcf86df4"
         },
         "task": [
           {
@@ -70,7 +70,7 @@
                 "destination_table": "source_a.bronze",
                 "source_table": "source_a.test_table"
               },
-              "notebook_path": "/Users/bbluestone@outlook.com/.bundle/source-A-bundle/dev/files/src/source_A_1_raw_to_bronze_notebook"
+              "notebook_path": "/Users/724b31cb-bccb-42dc-b251-3bbdbcf86df4/.bundle/source-A-bundle/dev/files/src/source_A_1_raw_to_bronze_notebook"
             },
             "task_key": "upload_to_bronze"
           },
@@ -82,7 +82,7 @@
             ],
             "job_cluster_key": "job_cluster",
             "notebook_task": {
-              "notebook_path": "/Users/bbluestone@outlook.com/.bundle/source-A-bundle/dev/files/src/source_A_2_bronze_to_silver_notebook"
+              "notebook_path": "/Users/724b31cb-bccb-42dc-b251-3bbdbcf86df4/.bundle/source-A-bundle/dev/files/src/source_A_2_bronze_to_silver_notebook"
             },
             "task_key": "bronze_to_silver"
           },
@@ -94,7 +94,7 @@
             ],
             "job_cluster_key": "job_cluster",
             "notebook_task": {
-              "notebook_path": "/Users/bbluestone@outlook.com/.bundle/source-A-bundle/dev/files/src/source_A_3_silver_to_gold_notebook"
+              "notebook_path": "/Users/724b31cb-bccb-42dc-b251-3bbdbcf86df4/.bundle/source-A-bundle/dev/files/src/source_A_3_silver_to_gold_notebook"
             },
             "task_key": "silver_to_gold"
           }
@@ -103,17 +103,17 @@
       "wheel-job": {
         "deployment": {
           "kind": "BUNDLE",
-          "metadata_file_path": "/Users/bbluestone@outlook.com/.bundle/source-A-bundle/dev/state/metadata.json"
+          "metadata_file_path": "/Users/724b31cb-bccb-42dc-b251-3bbdbcf86df4/.bundle/source-A-bundle/dev/state/metadata.json"
         },
         "edit_mode": "UI_LOCKED",
         "format": "MULTI_TASK",
         "max_concurrent_runs": 4,
-        "name": "[dev bbluestone] wheel-job",
+        "name": "[dev 724b31cb_bccb_42dc_b251_3bbdbcf86df4] wheel-job",
         "queue": {
           "enabled": true
         },
         "tags": {
-          "dev": "bbluestone"
+          "dev": "724b31cb_bccb_42dc_b251_3bbdbcf86df4"
         },
         "task": [
           {
