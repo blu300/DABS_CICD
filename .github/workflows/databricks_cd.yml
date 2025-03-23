@@ -86,7 +86,8 @@ jobs:
 
     steps:
       - name: Print Run ID
-        run: echo "run id: ${{ github.event.workflow_run.id }}"
+        run: |
+          echo "run id: ${{ github.event.workflow_run.id }}"
 
       - name: Download Databricks Build Artifact
         uses: actions/download-artifact@v4
