@@ -25,10 +25,6 @@ jobs:
           persist-credentials: true
           clean: true
 
-      - name: Get Databricks CLI Logged-in User
-        run: |
-            databricks auth whoami
-
       - name: Set up Python
         uses: actions/setup-python@v4
         with:

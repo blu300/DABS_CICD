@@ -56,7 +56,4 @@ jobs:
               databricks bundle deploy -t dev
               # databricks bundle run -t dev wheel-job
 
-      # - name: Move wheel file to wheels folder I hope
-      #   run: |
-      #         databricks workspace list /Users/bbluestone@outlook.com/.bundle/source-A-bundle/dev/artifacts/.internal
-          
+ 

@@ -38,6 +38,10 @@ jobs:
           curl -fsSL https://raw.githubusercontent.com/databricks/setup-cli/main/install.sh | sh
 
 
+      - name: Get Databricks CLI Logged-in User
+        run: |
+              databricks auth whoami
+
       - name: List cwd and files
         run: |
             echo "Current working directory:"
