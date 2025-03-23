@@ -14,7 +14,6 @@ jobs:
     env:
       DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
       DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
-
       DATABRICKS_BUNDLE_ROOT: ${{ github.workspace }}/${{ secrets.DAB_PATH }}
 
 
@@ -55,6 +54,8 @@ jobs:
           databricks bundle deploy -t dev
           databricks bundle run integration_test_end_to_end_job
           databricks bundle destroy -t dev --auto-approve
+        env:
+          DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
 
 
       - name: Archive Databricks Asset Bundle
