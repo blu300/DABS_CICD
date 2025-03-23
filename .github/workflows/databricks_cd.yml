@@ -136,7 +136,7 @@ jobs:
       - name: Export the File from Databricks Workspace to Local Directory
         run: |
             echo "Exporting the wheel file from Databricks workspace..."
-            databricks workspace export /Workspace/Production/source-A-bundle/artifacts/.internal/my_wheel-0.1.5-py3-none-any.whl ./my_wheel-0.1.5-py3-none-any.whl
+            databricks workspace export /Workspace/Production/source-A-bundle/artifacts/.internal/my_wheel-0.1.5-py3-none-any.whl 
   
       - name: Import the File to Target Databricks Workspace Folder
         run: |
