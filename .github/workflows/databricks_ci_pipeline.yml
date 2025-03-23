@@ -45,6 +45,9 @@ jobs:
         run: |
           curl -fsSL https://raw.githubusercontent.com/databricks/setup-cli/main/install.sh | sh
 
+      - name: Test Databricks Authentication
+        run: |
+          databricks auth describe
 
       - name: Validate, deploy, run tests, and destroy bundle on dev
         run: |
