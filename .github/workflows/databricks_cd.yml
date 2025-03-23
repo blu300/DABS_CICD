@@ -39,7 +39,7 @@ jobs:
       
       - name: Login 
         run: |
-          databricks auth login --host ${DATABRICKS_TOKEN} --profile SP
+          databricks auth login --host ${DATABRICKS_HOST} --profile SP
 
       - name: Get Databricks CLI Logged-in User
         run: |
