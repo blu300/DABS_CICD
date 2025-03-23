@@ -83,6 +83,8 @@ jobs:
     env:
       DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
       DATABRICKS_BUNDLE_PATH: ${{ github.workspace }}/databricks_build.zip
+      DATABRICKS_CLIENT_ID: ${{ secrets.SP_ID }}
+      DATABRICKS_CLIENT_SECRET: ${{ secrets.SP_TOKEN }}
 
     steps:
       - name: Print Run ID
@@ -106,13 +108,11 @@ jobs:
         run: |
           curl -fsSL https://raw.githubusercontent.com/databricks/setup-cli/main/install.sh | sh
 
-      - name: Authenticate Databricks CLI  # 🔥 Fix: Explicitly authenticate before running CLI commands
+      - name: Set Databricks Authentication  # 🔥 Fix: Set auth variables before using CLI
         run: |
-          echo "Forcing Databricks authentication..."
-          databricks auth login --host $DATABRICKS_HOST --client-id $DATABRICKS_CLIENT_ID --client-secret $DATABRICKS_CLIENT_SECRET
-        env:
-          DATABRICKS_CLIENT_ID: ${{ secrets.SP_ID }}
-          DATABRICKS_CLIENT_SECRET: ${{ secrets.SP_TOKEN }}
+          echo "Configuring Databricks authentication..."
+          export DATABRICKS_ACCESS_TOKEN=$(databricks oauth token --client-id $DATABRICKS_CLIENT_ID --client-secret $DATABRICKS_CLIENT_SECRET --host $DATABRICKS_HOST)
+          echo "Databricks authentication configured successfully."
 
       - name: List cwd and files
         run: |
@@ -132,9 +132,6 @@ jobs:
           cd databricks_build
           echo "Deploying DAB bundle..."
           databricks bundle deploy -t prod
-        env:
-          DATABRICKS_CLIENT_ID: ${{ secrets.SP_ID }}
-          DATABRICKS_CLIENT_SECRET: ${{ secrets.SP_TOKEN }}
 
       - name: Confirm Deployment
         run: |
