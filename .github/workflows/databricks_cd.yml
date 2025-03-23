@@ -37,20 +37,6 @@ jobs:
         run: |
           curl -fsSL https://raw.githubusercontent.com/databricks/setup-cli/main/install.sh | sh
       
-      - name: Configure Databricks Authentication
-        run: |
-            mkdir -p ~/.databricks
-            echo "[SP]" > ~/.databrickscfg
-            echo "host = $DATABRICKS_HOST" >> ~/.databrickscfg
-            echo "client_id = $DATABRICKS_CLIENT_ID" >> ~/.databrickscfg
-            echo "client_secret = $DATABRICKS_CLIENT_SECRET" >> ~/.databrickscfg
-            echo "auth_type = oauth" >> ~/.databrickscfg
-        env:
-            DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
-            DATABRICKS_CLIENT_ID: ${{ secrets.SP_ID }}
-            DATABRICKS_CLIENT_SECRET: ${{ secrets.SP_TOKEN }}
-        
-
       - name: Get Databricks CLI Logged-in User
         run: |
               databricks auth describe
@@ -78,4 +64,4 @@ jobs:
 
       - name: Confirm Deployment
         run: |
-          echo "DAB bundle deployed and job executed successfully!"
+          echo "DAB bundle deployed and job executed successfully! "
