@@ -36,7 +36,10 @@ jobs:
       - name: Install Databricks CLI
         run: |
           curl -fsSL https://raw.githubusercontent.com/databricks/setup-cli/main/install.sh | sh
-
+      
+      - name: Login 
+        run: |
+          databricks auth login --host ${DATABRICKS_TOKEN} --profile SP
 
       - name: Get Databricks CLI Logged-in User
         run: |
