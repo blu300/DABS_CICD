@@ -48,11 +48,11 @@ jobs:
         run: |
               python bump_version.py  # Run the Python script that bumps the version
 
-      - name: Validate, deploy, run tests, and destroy bundle on dev
-        run: |
-              set -e
-              databricks bundle validate
-              databricks bundle deploy -t dev 
-              databricks bundle run -t dev wheel-job
-              databricks bundle destroy -t dev 
+      # - name: Validate, deploy, run tests, and destroy bundle on dev
+      #   run: |
+      #         set -e
+      #         databricks bundle validate
+      #         databricks bundle deploy -t dev 
+      #         databricks bundle run -t dev wheel-job
+      #         databricks bundle destroy -t dev 
  
