@@ -134,6 +134,6 @@ jobs:
           cd databricks_build
           echo "Deploying DAB bundle..."
           databricks bundle deploy -t prod
-          databricks bundle run source_A_etl -t prod
+          # databricks bundle run source_A_etl -t prod
 
      
