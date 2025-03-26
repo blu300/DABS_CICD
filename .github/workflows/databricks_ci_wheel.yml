@@ -1,3 +1,58 @@
+# name: Databricks CI Wheel
+
+# on:
+#   push:
+#     branches:
+#       - main
+#     paths:  
+#       - 'src/my_wheel/**'
+
+# jobs:
+#   build:
+#     runs-on: ubuntu-22.04
+
+#     env:
+#       DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
+#       DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
+#       DATABRICKS_BUNDLE_ROOT: ${{ github.workspace }}/${{ secrets.DAB_PATH }}
+
+#     steps:
+#       - name: Checkout repository
+#         uses: actions/checkout@v4
+#         with:
+#           persist-credentials: true
+#           clean: true
+
+  
+#       - name: Set up Python
+#         uses: actions/setup-python@v4
+#         with:
+#           python-version: '3.10'
+#           architecture: 'x64'
+
+#       - name: Install dependencies 
+#         run: |
+#           python -m pip install --upgrade pip
+#           # pip install wheel setuptools  # Install the necessary build tools
+#           pip install wheel setuptools pytest nutter
+
+#       - name: Run tests
+#         run: |
+#             pytest tests/wheel
+            
+#       - name: Install Databricks CLI
+#         run: |
+#           curl -fsSL https://raw.githubusercontent.com/databricks/setup-cli/main/install.sh | sh
+
+#       - name: Validate, deploy, run tests, and destroy bundle on dev
+#         run: |
+#               set -e
+#               databricks bundle validate
+#               databricks bundle deploy -t dev 
+#       #         databricks bundle run -t dev wheel-job
+#       #         databricks bundle destroy -t dev 
+
+
 name: Databricks CI Wheel
 
 on:
@@ -23,7 +78,6 @@ jobs:
           persist-credentials: true
           clean: true
 
-  
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
@@ -33,26 +87,30 @@ jobs:
       - name: Install dependencies 
         run: |
           python -m pip install --upgrade pip
-          # pip install wheel setuptools  # Install the necessary build tools
           pip install wheel setuptools pytest nutter
+
+      - name: Build wheel
+        run: |
+          python setup.py bdist_wheel
+          echo "WHEEL_FILE=$(ls dist/*.whl | head -n 1)" >> $GITHUB_ENV
 
       - name: Run tests
         run: |
-            pytest tests/wheel
-            
+          pytest tests/wheel
+
       - name: Install Databricks CLI
         run: |
           curl -fsSL https://raw.githubusercontent.com/databricks/setup-cli/main/install.sh | sh
 
-      # - name: Run Version Bump
-      #   run: |
-      #         python bump_version.py  # Run the Python script that bumps the version
-
-      - name: Validate, deploy, run tests, and destroy bundle on dev
+      - name: Validate, deploy, and move wheel to Databricks volume
         run: |
-              set -e
-              databricks bundle validate
-              databricks bundle deploy -t dev 
-      #         databricks bundle run -t dev wheel-job
-      #         databricks bundle destroy -t dev 
- 
+          set -e
+          databricks bundle validate
+          databricks bundle deploy -t dev 
+
+          # Get the dynamically generated wheel filename
+          WHEEL_FILE=$(ls dist/*.whl | head -n 1)
+          echo "Wheel file: $WHEEL_FILE"
+
+          # Copy to Databricks Volume
+          databricks fs cp $WHEEL_FILE dbfs:/Volumes/uc_test/uc_test_schema/uc_test_volume/
