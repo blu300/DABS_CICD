@@ -3,6 +3,7 @@ import pyspark.sql.functions as F
 
 # COMMAND ----------
 
+# Hello world   ed
 source_table_name= dbutils.widgets.get("source_table")
 destination_table_name = dbutils.widgets.get("destination_table")
 
