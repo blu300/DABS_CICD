@@ -119,7 +119,7 @@
           {
             "library": [
               {
-                "whl": "/Workspace/Users/bbluestone@outlook.com/.bundle/source-A-bundle/dev/artifacts/.internal/my_wheel-0.1.4-py3-none-any.whl"
+                "whl": "/Workspace/Users/bbluestone@outlook.com/.bundle/source-A-bundle/dev/artifacts/.internal/my_wheel-0.1.4+20250327.201152-py3-none-any.whl"
               }
             ],
             "new_cluster": {

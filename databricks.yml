@@ -40,8 +40,8 @@ targets:
       host: https://adb-1909067673949101.1.azuredatabricks.net/
       root_path: ${var.prod_path}
     run_as:
-    #   service_principal_name: 724b31cb-bccb-42dc-b251-3bbdbcf86df4
-        user_name: bbluestone@outlook.com
+      service_principal_name: 724b31cb-bccb-42dc-b251-3bbdbcf86df4
+        # user_name: bbluestone@outlook.com
 
     sync:
       include:
